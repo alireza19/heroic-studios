@@ -9,10 +9,21 @@ import SignUpScreen from './Screens/signup'
 class App extends React.Component{
   render(){
     return (
+
+
       <View style={styles.container}>
+          <View style={{width: '100%', alignItems:'flex-end'}}>
+          <Button
+              title="Add Credential"
+              type="outline"
+              buttonStyle = {styles.add}
+          />
+        </View>
+
         <View>
           <Text style={styles.emergency}>Emergency?</Text>
         </View>
+
         <Button
           title="Overdose"
           type="outline"
@@ -29,7 +40,7 @@ class App extends React.Component{
           buttonStyle = {styles.Button}
         />
         <Button
-          title="Unconcious"
+          title="Unconscious"
           type="outline"
           buttonStyle = {styles.Button}
         />
@@ -53,6 +64,10 @@ const styles = StyleSheet.create({
   Button: {
     marginBottom: 20,
     width: 300
+  },
+  add: {
+
+
   }
 });
 
@@ -60,12 +75,12 @@ const AppNavigator = createStackNavigator({
   HomeScreen: {
     screen: App,
   },
-  Login:{
-    screen: LoginScreen 
-  },
-  Signup: {
-    screen: SignUpScreen
-  }
+  // Login:{
+  //   screen: LoginScreen
+  // },
+  // Signup: {
+  //   screen: SignUpScreen
+  // }
 });
 
 export default createAppContainer(AppNavigator);
