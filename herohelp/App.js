@@ -1,10 +1,10 @@
 import React from 'react';
-import { StyleSheet, Text, View, Dimensions} from 'react-native';
+import { StyleSheet, Text, View} from 'react-native';
 import {Button, Icon} from 'react-native-elements';
 import { createAppContainer } from 'react-navigation';
 import { createStackNavigator } from 'react-navigation-stack';
-import {LoginScreen} from './Screens/login'
-import {SignUpScreen} from './Screens/signup'
+import LoginScreen from './Screens/login'
+import SignUpScreen from './Screens/signup'
 
 class App extends React.Component{
   render(){
@@ -60,10 +60,10 @@ const AppNavigator = createStackNavigator({
   HomeScreen: {
     screen: App,
   },
-  LoginScreen:{
+  Login:{
     screen: LoginScreen 
   },
-  SignupScreen: {
+  Signup: {
     screen: SignUpScreen
   }
 });
