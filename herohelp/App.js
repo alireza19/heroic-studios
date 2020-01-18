@@ -1,33 +1,41 @@
 import React from 'react';
 import { StyleSheet, Text, View, Dimensions} from 'react-native';
 import {Button, Icon} from 'react-native-elements';
+import { createAppContainer } from 'react-navigation';
+import { createStackNavigator } from 'react-navigation-stack';
+import {LoginScreen} from './Screens/login'
+import {SignUpScreen} from './Screens/signup'
 
-export default function App() {
-  return (
-    <View style={styles.container}>
-      <Text style={styles.emergency}>Emergency?</Text>
-      <Button
-        title="Overdose"
-        type="outline"
-        buttonStyle = {styles.Button}
-      />
-      <Button
-        title="Heart-attack"
-        type="outline"
-        buttonStyle = {styles.Button}
-      />
-      <Button
-        title="Drowning"
-        type="outline"
-        buttonStyle = {styles.Button}
-      />
-      <Button
-        title="Unconcious"
-        type="outline"
-        buttonStyle = {styles.Button}
-      />
-    </View>
-  );
+class App extends React.Component{
+  render(){
+    return (
+      <View style={styles.container}>
+        <View>
+          <Text style={styles.emergency}>Emergency?</Text>
+        </View>
+        <Button
+          title="Overdose"
+          type="outline"
+          buttonStyle = {styles.Button}
+        />
+        <Button
+          title="Heart-attack"
+          type="outline"
+          buttonStyle = {styles.Button}
+        />
+        <Button
+          title="Drowning"
+          type="outline"
+          buttonStyle = {styles.Button}
+        />
+        <Button
+          title="Unconcious"
+          type="outline"
+          buttonStyle = {styles.Button}
+        />
+      </View>
+    );
+  }
 }
 
 const styles = StyleSheet.create({
@@ -39,10 +47,25 @@ const styles = StyleSheet.create({
     alignItems: 'center'
   },
   emergency: {
-
+    fontSize: 36,
+    color: "#304269"
   },
   Button: {
     marginBottom: 20,
     width: 300
   }
 });
+
+const AppNavigator = createStackNavigator({
+  HomeScreen: {
+    screen: App,
+  },
+  LoginScreen:{
+    screen: LoginScreen 
+  },
+  SignupScreen: {
+    screen: SignUpScreen
+  }
+});
+
+export default createAppContainer(AppNavigator);
