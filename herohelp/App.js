@@ -10,29 +10,41 @@ class App extends React.Component{
   render(){
     return (
       <View style={styles.container}>
-        <View>
-          <Text style={styles.emergency}>Emergency?</Text>
+        <View style={styles.emergencyContainer}>
+          <Text style={styles.emergency}>What is the Emergency?</Text>
         </View>
-        <Button
-          title="Overdose"
-          type="outline"
-          buttonStyle = {styles.Button}
-        />
-        <Button
-          title="Heart-attack"
-          type="outline"
-          buttonStyle = {styles.Button}
-        />
-        <Button
-          title="Drowning"
-          type="outline"
-          buttonStyle = {styles.Button}
-        />
-        <Button
-          title="Unconcious"
-          type="outline"
-          buttonStyle = {styles.Button}
-        />
+        <View style={styles.ButtonContainers}>
+          <Button
+            title="Overdose"
+            type="outline"
+            buttonStyle = {styles.Button}
+
+          />
+          <View>
+            <Button
+              title="Alcohol"
+              buttonStyle = {{...styles.Button}}
+            />
+          </View>
+          <Button
+            title="Heart-attack"
+            type="outline"
+            buttonStyle = {styles.Button}
+          />
+          <Button
+            title="Drowning"
+            type="outline"
+            buttonStyle = {styles.Button}
+          />
+          <Button
+            title="Unconcious"
+            type="outline"
+            buttonStyle = {styles.Button}
+          />
+          <View style={styles.infoPane}>
+            <Text style={{color:'white'}}>HeroHelp sends your location to 911 during an emergency.</Text>
+          </View>
+        </View>
       </View>
     );
   }
@@ -43,16 +55,44 @@ const styles = StyleSheet.create({
     flex: 1,
     width: '100%',
     backgroundColor: "#FFFFFF",
-    justifyContent: 'center',
-    alignItems: 'center'
+    // backgroundColor: 'grey'
+    // justifyContent: 'center',
+    // alignItems: 'center'
+  },
+  emergencyContainer: {
+    flex:2,
+    paddingBottom: 30,
+    // backgroundColor: 'grey'
   },
   emergency: {
     fontSize: 36,
-    color: "#304269"
+    color: "#F26101",
+    marginTop:30,
+    marginLeft: 40,
+  },
+  ButtonContainers:{
+    // backgroundColor: 'grey',
+    // marginTop: 40,
+    alignItems: 'center',
+    flex: 8
   },
   Button: {
     marginBottom: 20,
-    width: 300
+    width: 300,
+    height: 50,
+    borderColor: '#304269'
+  },
+  infoPane: {
+    position: 'absolute',
+    bottom: 0,
+    backgroundColor : '#304269',
+    width: '100%',
+    // flex:2,
+    paddingTop: 20,
+    paddingLeft: 20,
+    paddingRight: 20,
+    paddingBottom: 20,
+    marginTop:40
   }
 });
 
