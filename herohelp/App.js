@@ -37,12 +37,18 @@ class App extends React.Component{
             buttonStyle = {styles.Button}
           />
           <Button
-            title="Unconcious"
+            title="Unconscious "
             type="outline"
             buttonStyle = {styles.Button}
           />
           <View style={styles.infoPane}>
-            <Text style={{color:'white'}}>HeroHelp sends your location to 911 during an emergency.</Text>
+            <Text style={{
+              color:'white',
+              textAlign:'center'}}>HeroHelp sends your location to 911 </Text>
+              <Text style={{
+              color:'white',
+              textAlign:'center'}}>during an emergency.</Text>
+              
           </View>
         </View>
       </View>
@@ -92,7 +98,7 @@ const styles = StyleSheet.create({
     paddingLeft: 20,
     paddingRight: 20,
     paddingBottom: 20,
-    marginTop:40
+    marginTop:40,
   }
 });
 
