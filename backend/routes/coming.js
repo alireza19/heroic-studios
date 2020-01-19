@@ -44,7 +44,7 @@ router.post('/coming', function(req, res){
                     sound: 'default',
                     body: result.name + " is coming",
                     data: { 
-                        data:data
+                        data:"no"
                     },
                 })
                 console.log(messages);
