@@ -28,18 +28,10 @@ class App extends React.Component{
 
     return (
       <View style={styles.container}>
-        <View style={{width: '100%', alignItems:'flex-end', justifyContent: 'flex-end'}}>
-          {/*<Button*/}
-          {/*    title="Add Credentials"*/}
-          {/*    type="outline"*/}
-          {/*    onPress={() => this.props.navigation.navigate('Credentials')}*/}
-          {/*/>*/}
-        </View>
+
         <View style={styles.emergencyContainer}>
           <Text style={styles.emergency}>What is the Emergency?</Text>
-
         </View>
-
 
         <View style={styles.ButtonContainers}>
           <Button
@@ -87,29 +79,26 @@ class App extends React.Component{
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    width: '100%',
+    width: "100%",
     backgroundColor: "#FFFFFF",
-    // backgroundColor: 'grey'
-    // justifyContent: 'center',
-    // alignItems: 'center'
+    justifyContent: "center",
+    alignItems: "center"
   },
-  emergencyContainer: {
-    flex:2,
-    paddingBottom: 30,
-    // backgroundColor: 'grey'
-  },
+    emergencyContainer: {
+        flex:2,
+        paddingBottom: 30,
+        // backgroundColor: 'grey'
+    },
   emergency: {
     fontSize: 36,
-    color: "#F26101",
-    marginTop:30,
-    marginLeft: 40,
+    color: "#304269"
   },
-  ButtonContainers:{
-    // backgroundColor: 'grey',
-    // marginTop: 40,
-    alignItems: 'center',
-    flex: 8
-  },
+    ButtonContainers:{
+        // backgroundColor: 'grey',
+        // marginTop: 40,
+        alignItems: 'center',
+        flex: 8
+    },
   Button: {
     marginBottom: 20,
     width: 300,
@@ -128,27 +117,27 @@ const styles = StyleSheet.create({
     paddingBottom: 20,
     marginTop:40,
     width: 300
-  },
+  }
 
 });
 
 const AppNavigator = createStackNavigator({
-  HomeScreen: {
-    screen: App
-  },
-  // ,
-  // Login:{
-  //   screen: LoginScreen
+  // HomeScreen: {
+  //   screen: App
   // },
-  // Signup: {
-  //   screen: SignUpScreen
-  // }
+
+  Login:{
+    screen: LoginScreen
+  },
+  Signup: {
+    screen: SignUpScreen
+  }
   // Credentials: {
   //   screen: CredentialsScreen
   // },
-  Profile: {
-    screen: ProfileScreen
-  }
+  // Profile: {
+  //   screen: ProfileScreen
+  // }
 });
 
 export default createAppContainer(AppNavigator);
