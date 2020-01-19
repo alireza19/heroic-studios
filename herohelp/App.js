@@ -42,10 +42,14 @@ class App extends React.Component {
           onPress={() => navigation.navigate("Profile")}
           title="Profile"
           color="#fff"
+          // onPress={() => {
+          //   navigation.navigate("Profile",{userEmail: this.state.email});
+          // }}
         />
       )
     };
   };
+
   state = {
     notification: {},
     chosen: "",
@@ -256,13 +260,9 @@ const AppNavigator = createStackNavigator({
   Profile: {
     screen: ProfileScreen
   },
-
   Credentials: {
     screen: CredentialsScreen
   }
-  // Credentials: {
-  //   screen: CredentialsScreen
-  // }
 });
 
 export default createAppContainer(AppNavigator);
