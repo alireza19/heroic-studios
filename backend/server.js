@@ -17,6 +17,7 @@ const everythingOkay = require('./routes/everythingOkay.js');
 const warning = require('./routes/warning.js');
 const expoToken = require('./routes/expoToken');
 const updateLoc = require('./routes/updateLoc');
+const coming = require('./routes/coming');
 
 server.use(helmet());
 server.use((req, res, next) => {
@@ -43,6 +44,7 @@ server.post('/warning', warning);
 server.get('/everythingOkay', everythingOkay);
 server.post('/expoToken', expoToken);
 server.post('/updateLoc', updateLoc);
+server.post('/coming', coming);
 
 server.get('*', function(req, res){
     res.status(200).send('There is nothing here. This incident is reported.');
