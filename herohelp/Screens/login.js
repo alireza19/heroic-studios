@@ -53,13 +53,13 @@ export default class LoginScreen extends Component {
     );
   }
   getUser = async () => {
-    axios.post("http://204.209.76.173/loginin", {
+    axios.post(`http://204.209.76.173/loginin?timestamp=${new Date().getTime()}`, {
       email: this.state.email,
       pass: this.state.pass
     })
     .then(response => {
       console.log({email: this.state.email, pass: this.state.pass, data: response.data});
-      if (response.data == true) {
+      if (response.data.res == true) {
         this.props.navigation.navigate("HomeScreen");
       } else {
         Alert.alert("Login failed");
