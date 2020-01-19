@@ -21,7 +21,7 @@ var url = "mongodb://localhost:27017";
 //     });
 // });
 
-router.get('/loginin', function(req, res){
+router.post('/loginin', function(req, res){
     if(req.body.email == "" || typeof req.body.email === "undefined"){
         res.json({res:false});
         return;
@@ -38,8 +38,8 @@ router.get('/loginin', function(req, res){
         dbo.collection("customers").findOne({email: req.body.email, password: req.body.pass})
         .then(result => {
             if(!result){
-                res.json({res: false});
                 console.log({b: req.body})
+                res.json({res: false});
             }else{
                 res.json({res: true});
             }
