@@ -8,6 +8,8 @@ import SignUpScreen from "./Screens/signup";
 import HelpScreen from "./Screens/help";
 import { Notifications } from "expo";
 import * as Permissions from "expo-permissions";
+import axios from "axios";
+import CredentialsScreen from './Screens/CredentialsScreen'
 import ProfileScreen from "./Screens/profile";
 
 const PUSH_ENDPOINT = "https://exp.host/--/api/v2/push/send";
@@ -26,21 +28,25 @@ async function registerForPushNotificationsAsync() {
   // Get the token that identifies this device
   Notifications.getExpoPushTokenAsync().then(token => {
     // ExponentPushToken[3UgpXrDUr14B2I3Gemq2VO]
-    return fetch(PUSH_ENDPOINT, {
-      method: "POST",
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify({
-        token: {
-          value: token
-        },
-        user: {
-          username: "alireza19"
-        }
-      })
+    Axios.post("http://204.209.76.173/expoToken", {
+      token
     });
+    // return
+    // fetch(PUSH_ENDPOINT, {
+    //   method: "POST",
+    //   headers: {
+    //     Accept: "application/json",
+    //     "Content-Type": "application/json"
+    //   },
+    //   body: JSON.stringify({
+    //     token: {
+    //       value: token
+    //     },
+    //     user: {
+    //       username: "alireza19"
+    //     }
+    //   })
+    // });
   });
   // POST the token to your backend server from where you can retrieve it to send push notifications.
 }
@@ -81,6 +87,18 @@ class App extends React.Component {
     // do whatever you want to do with the notification
     this.setState({ notification: notification });
   };
+
+  sendWarning = () => {
+    axios.post(`http://204.209.76.173/warning?timestamp=${new Date().getTime()}`, {
+                "lat": 53.525684,
+                "long": -113.519277,
+                "type": "Overdose",
+                "email": "akfatih2@gmail.com"
+              }).then((res) => {
+                console.log(res);
+                Alert.alert("sent");
+              });
+  }
   render() {
     const { navigate } = this.props.navigation;
     return (
@@ -98,11 +116,13 @@ class App extends React.Component {
           <Button
             title="Overdose"
             type="outline"
-
             buttonStyle={styles.Button}
 
 
             // onPress={() => { this.props.navigation.navigate('Help', {chosen:"Overdoes"})}}
+            onPress={() => {
+              this.sendWarning();
+            }}
           />
           <View>
             <Button title="Alcohol" buttonStyle={{ ...styles.Button }} />
@@ -137,12 +157,9 @@ class App extends React.Component {
             </Text>
           </View>
         </View>
-
-
-  </View>
+      </View>
     );
   }
-
 }
 
 const styles = StyleSheet.create({
@@ -199,6 +216,14 @@ const AppNavigator = createStackNavigator({
   HomeScreen: {
     screen: App
   },
+
+  // Profile: {
+  //   screen: ProfileScreen
+  // }
+
+  Login: {
+    screen: LoginScreen
+  },
   Signup: {
     screen: SignUpScreen
   },
@@ -207,6 +232,10 @@ const AppNavigator = createStackNavigator({
   },
   Profile: {
     screen: ProfileScreen
+  },
+
+  Credentials: {
+    screen: CredentialsScreen
   }
 });
 
