@@ -45,11 +45,11 @@ const styles = StyleSheet.create({
 });
 
 const AppNavigator = createStackNavigator({
-  // HomeScreen: {
-  //   screen: App
-  // },
   LoginScreen: {
     screen: LoginScreen
+  },
+  HomeScreen: {
+    screen: App
   }
   // SignupScreen: {
   //   screen: SignUpScreen

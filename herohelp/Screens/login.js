@@ -42,7 +42,7 @@ export default class LoginScreen extends Component {
       })
       .then(response => {
         if (response.data) {
-          Alert.alert("WELCOME");
+          this.props.navigation.navigate("HomeScreen");
         } else {
           Alert.alert("Login failed");
         }
