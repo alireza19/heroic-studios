@@ -139,7 +139,8 @@ class App extends React.Component {
         {
           text: "OK",
           onPress: () => {
-            var email = AsyncStorage.getItem("email").then(() => {
+            Alert.alert(JSON.stringify(notification));
+            AsyncStorage.getItem("user").then(() => {
               axios.post(
                 `http://204.209.76.173/coming?t=${new Date().getTime()}`,
                 {
