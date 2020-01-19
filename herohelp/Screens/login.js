@@ -40,14 +40,15 @@ export default class LoginScreen extends Component {
             this.getUser();
           }}
         />
-          <Button
-              title="Sign Up"
-              type="outline"
-              color="#91BED4"
-              buttonStyle={styles.Button}
-              onPress={() => { this.props.navigation.navigate('Signup');
-              }}
-          />
+        <Button
+          title="Sign Up"
+          type="outline"
+          color="#91BED4"
+          buttonStyle={styles.Button}
+          onPress={() => {
+            this.props.navigation.navigate("Signup");
+          }}
+        />
       </View>
     );
   }
@@ -58,7 +59,7 @@ export default class LoginScreen extends Component {
         pass: this.state.pass
       })
       .then(response => {
-        if (response.data) {
+        if (response.data == true) {
           this.props.navigation.navigate("HomeScreen");
         } else {
           Alert.alert("Login failed");
