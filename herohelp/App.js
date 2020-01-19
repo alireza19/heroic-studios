@@ -130,32 +130,36 @@ class App extends React.Component {
     console.log(notification);
     this.setState({ notification: notification });
     if (notification.origin == "selected") {
-      Alert.alert("Alert", "Naloxone needed", [
-        {
-          text: "Cancel",
-          onPress: () => console.log("Cancel Pressed"),
-          style: "cancel"
-        },
-        {
-          text: "OK",
-          onPress: () => {
-            Alert.alert(JSON.stringify(notification));
-            AsyncStorage.getItem("user").then(() => {
+      if(!notification.data.pros){
+        Alert.alert("Alert", "Naloxone needed", [
+          {
+            text: "Cancel",
+            onPress: () => console.log("Cancel Pressed"),
+            style: "cancel"
+          },
+          {
+            text: "OK",
+            onPress: () => {
+              Alert.alert(JSON.stringify(notification));
+            AsyncStorage.getItem("user").then((email) => {
               axios.post(
                 `http://204.209.76.173/coming?t=${new Date().getTime()}`,
                 {
                   token: notification.data.token,
-                  email: notification.data.email
+                  email: email.toLowerCase()
                 }
-              );
-              openMap({
-                latitude: notification.lat,
-                longitude: notification.long
+                );
+                openMap({
+                  latitude: notification.lat,
+                  longitude: notification.long
+                });
               });
-            });
+            }
           }
-        }
-      ]);
+        ]);
+      }else{
+        Alert.alert(notification.data.name + " is on the way.");
+      }
     }
   };
 
