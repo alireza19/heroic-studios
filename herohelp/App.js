@@ -1,38 +1,26 @@
-import React from 'react';
-import { StyleSheet, Text, View, Dimensions} from 'react-native';
-import {Button, Icon} from 'react-native-elements';
-import { createAppContainer } from 'react-navigation';
-import { createStackNavigator } from 'react-navigation-stack';
-import {LoginScreen} from './Screens/login'
-import {SignUpScreen} from './Screens/signup'
+import React from "react";
+import { StyleSheet, Text, View, Dimensions } from "react-native";
+import { Button, Icon } from "react-native-elements";
+import { createAppContainer } from "react-navigation";
+import { createStackNavigator } from "react-navigation-stack";
+import LoginScreen from "./Screens/login";
+import SignUpScreen from "./Screens/signup";
 
-class App extends React.Component{
-  render(){
+class App extends React.Component {
+  render() {
     return (
       <View style={styles.container}>
         <View>
           <Text style={styles.emergency}>Emergency?</Text>
         </View>
-        <Button
-          title="Overdose"
-          type="outline"
-          buttonStyle = {styles.Button}
-        />
+        <Button title="Overdose" type="outline" buttonStyle={styles.Button} />
         <Button
           title="Heart-attack"
           type="outline"
-          buttonStyle = {styles.Button}
+          buttonStyle={styles.Button}
         />
-        <Button
-          title="Drowning"
-          type="outline"
-          buttonStyle = {styles.Button}
-        />
-        <Button
-          title="Unconcious"
-          type="outline"
-          buttonStyle = {styles.Button}
-        />
+        <Button title="Drowning" type="outline" buttonStyle={styles.Button} />
+        <Button title="Unconcious" type="outline" buttonStyle={styles.Button} />
       </View>
     );
   }
@@ -41,10 +29,10 @@ class App extends React.Component{
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    width: '100%',
+    width: "100%",
     backgroundColor: "#FFFFFF",
-    justifyContent: 'center',
-    alignItems: 'center'
+    justifyContent: "center",
+    alignItems: "center"
   },
   emergency: {
     fontSize: 36,
@@ -57,15 +45,15 @@ const styles = StyleSheet.create({
 });
 
 const AppNavigator = createStackNavigator({
-  HomeScreen: {
-    screen: App,
-  },
-  LoginScreen:{
-    screen: LoginScreen 
-  },
-  SignupScreen: {
-    screen: SignUpScreen
+  // HomeScreen: {
+  //   screen: App
+  // },
+  LoginScreen: {
+    screen: LoginScreen
   }
+  // SignupScreen: {
+  //   screen: SignUpScreen
+  // }
 });
 
 export default createAppContainer(AppNavigator);
