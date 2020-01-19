@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import {View, StyleSheet, Text} from 'react-native';
 import {Button, Input, Avatar, Divider} from "react-native-elements";
 
+//GET DB
 
 export default class ProfileScreen extends Component{
     render(){
