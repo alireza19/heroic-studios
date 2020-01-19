@@ -1,8 +1,6 @@
 import React, { Component } from "react";
 import { View, Text, StyleSheet, Alert } from "react-native";
 import { Button } from "react-native-elements";
-import Icon from "react-native-vector-icons/FontAwesome";
-import { Input } from "react-native-elements";
 import { TextInput } from "react-native-gesture-handler";
 import axios from "axios";
 
@@ -10,18 +8,29 @@ export default class LoginScreen extends Component {
   static navigationOptions = {
     headerShown: false
   };
-
+  constructor(props) {
+    super(props);
+    this.state = {
+      email: "",
+      pass: ""
+    };
+  }
   render() {
     return (
       <View style={styles.container}>
         <Text style={styles.title}>Heroic</Text>
         <TextInput
-          //   onChangeText={text => onChangeText(text)}
-          //   value={value}
+          onChangeText={value => this.setState({ email: value })}
+          value={this.state.email}
           placeholder="User ID"
           style={styles.loginInput}
         />
-        <TextInput placeholder="Password" style={styles.loginInput} />
+        <TextInput
+          placeholder="Password"
+          style={styles.loginInput}
+          onChangeText={value => this.setState({ pass: value })}
+          value={this.state.pass}
+        />
         <Button
           title="sign in"
           type="outline"
@@ -31,33 +40,34 @@ export default class LoginScreen extends Component {
             this.getUser();
           }}
         />
-          <Button
-              title="Sign Up"
-              type="outline"
-              color="#91BED4"
-              buttonStyle={styles.Button}
-              onPress={() => { this.props.navigation.navigate('Signup');
-              }}
-          />
+        <Button
+          title="Sign Up"
+          type="outline"
+          color="#91BED4"
+          buttonStyle={styles.Button}
+          onPress={() => {
+            this.props.navigation.navigate("Signup");
+          }}
+        />
       </View>
     );
   }
   getUser = async () => {
-    const response = axios
-      .get("http://204.209.76.173/loginin", {
-        email: "fatih@email.com",
-        pass: "password"
-      })
-      .then(response => {
-        if (response.data) {
-          this.props.navigation.navigate("HomeScreen");
-        } else {
-          Alert.alert("Login failed");
-        }
-      })
-      .catch(error => {
-        console.log({ error });
-      });
+    axios.post(`http://204.209.76.173/loginin?timestamp=${new Date().getTime()}`, {
+      email: this.state.email,
+      pass: this.state.pass
+    })
+    .then(response => {
+      console.log({email: this.state.email, pass: this.state.pass, data: response.data});
+      if (response.data.res == true) {
+        this.props.navigation.navigate("HomeScreen");
+      } else {
+        Alert.alert("Login failed");
+      }
+    })
+    .catch(error => {
+      console.log({ error });
+    });
   };
 }
 const styles = StyleSheet.create({

@@ -1,24 +1,30 @@
-const mongoClient = require('mongodb').MongoClient;
-const mongoDbUrl = 'mongodb://localhost:27017/mydb';
+var warnings;
 
-let mongodb;
-
-function connect(callback){
-    mongoClient.connect(mongoDbUrl, (err, db) => {
-        mongodb = db;
-        callback();
-    });
-}
-function get(){
-    return mongodb;
+function getWarnings(){
+    if(!warnings){
+        warnings = []
+    }
+    return warnings;
 }
 
-function close(){
-    mongodb.close();
+function newWarning(lat, long, type, sent, sentBy){
+    getWarnings()
+    warnings[warnings.length] = 
+        {
+            // lat: 53.525870,
+            // long: -113.518612,
+            // type: "CPR",
+            // sent: new Date(),
+            // sentBy: sentBy
+            lat,
+            long,
+            type,
+            sent,
+            sentBy
+        };
 }
 
 module.exports = {
-    connect,
-    get,
-    close
-};
+    getWarnings,
+    newWarning
+}

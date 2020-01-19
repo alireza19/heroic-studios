@@ -66,9 +66,7 @@ export default class SignUpScreen extends Component{
                 type="outline"
                 buttonStyle={styles.button}
 
-                onPress = {
-                    () => {this.checkAccount()}
-                }
+                onPress = {this.checkAccount}
                 />
             <Button
                 title= "Log In"
@@ -86,12 +84,11 @@ export default class SignUpScreen extends Component{
 
 
     checkAccount = async () => {
-        const response = axios
-            .get("http://204.209.76.173/signup", {
-                name: this.firstName.toLowerCase(),
-                lastName: this.lastName.toLocaleLowerCase(),
-                email: this.email.toLowerCase(),
-                password: this.password.toLowerCase()
+        axios.get("http://204.209.76.173/signup", {
+                name: this.state.firstName.toLowerCase(),
+                lastName: this.state.lastName.toLocaleLowerCase(),
+                email: this.state.email.toLowerCase(),
+                password: this.state.password.toLowerCase()
             })
             .then(response => {
                 if (response.data) {
