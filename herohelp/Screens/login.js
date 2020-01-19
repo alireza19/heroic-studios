@@ -40,6 +40,14 @@ export default class LoginScreen extends Component {
             this.getUser();
           }}
         />
+          <Button
+              title="Sign Up"
+              type="outline"
+              color="#91BED4"
+              buttonStyle={styles.Button}
+              onPress={() => { this.props.navigation.navigate('Signup');
+              }}
+          />
       </View>
     );
   }

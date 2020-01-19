@@ -13,9 +13,11 @@ class App extends React.Component {
   render() {
     return (
       <View style={styles.container}>
+
         <View style={styles.emergencyContainer}>
           <Text style={styles.emergency}>What is the Emergency?</Text>
         </View>
+
         <View style={styles.ButtonContainers}>
           <Button title="Overdose" type="outline" buttonStyle={styles.Button} />
           <View>
@@ -70,6 +72,11 @@ const styles = StyleSheet.create({
     paddingBottom: 30
     // backgroundColor: 'grey'
   },
+    emergencyContainer: {
+        flex:2,
+        paddingBottom: 30,
+        // backgroundColor: 'grey'
+    },
   emergency: {
     fontSize: 36,
     color: "#F26101",
@@ -82,6 +89,12 @@ const styles = StyleSheet.create({
     alignItems: "center",
     flex: 8
   },
+    ButtonContainers:{
+        // backgroundColor: 'grey',
+        // marginTop: 40,
+        alignItems: 'center',
+        flex: 8
+    },
   Button: {
     marginBottom: 20,
     width: 300,
@@ -100,6 +113,7 @@ const styles = StyleSheet.create({
     paddingBottom: 20,
     marginTop: 40
   }
+
 });
 
 const AppNavigator = createStackNavigator({
