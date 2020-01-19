@@ -89,7 +89,13 @@ class App extends React.Component {
             title="Overdose"
             type="outline"
             buttonStyle={styles.Button}
-            onPress={() => {}}
+            onPress={() => {
+              Axios.get("http://204.209.76.173/warning", {
+                "lat": 53.525684,
+                "long": -113.519277,
+                "type": "Overdose",
+                "email": "akfatih2@gmail.com"
+              })}}
           />
           <View>
             <Button title="Alcohol" buttonStyle={{ ...styles.Button }} />
