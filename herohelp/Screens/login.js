@@ -18,21 +18,23 @@ export default class LoginScreen extends Component {
     return (
       <View style={styles.container}>
         <Text style={styles.title}>Heroic</Text>
-        <TextInput
-          onChangeText={value => this.setState({ email: value })}
-          value={this.state.email}
-          placeholder="User ID"
-          style={styles.loginInput}
-        />
-        <TextInput
-          placeholder="Password"
-          style={styles.loginInput}
-          onChangeText={value => this.setState({ pass: value })}
-          value={this.state.pass}
-        />
+        <View style={{alignItems:'center'}}>
+          <TextInput
+            onChangeText={value => this.setState({ email: value })}
+            value={this.state.email}
+            placeholder="User ID"
+            style={styles.loginInput}
+          />
+          <TextInput
+            placeholder="Password"
+            style={styles.loginInput}
+            onChangeText={value => this.setState({ pass: value })}
+            value={this.state.pass}
+          />
+
         <Button
           title="sign in"
-          type="outline"
+          // type="outline"
           color="#91BED4"
           buttonStyle={styles.Button}
           onPress={() => {
@@ -41,13 +43,14 @@ export default class LoginScreen extends Component {
         />
         <Button
           title="Sign Up"
-          type="outline"
+          // type="outline"
           color="#91BED4"
           buttonStyle={styles.Button}
           onPress={() => {
             this.props.navigation.navigate("Signup");
           }}
         />
+        </View>
       </View>
     );
   }
@@ -77,16 +80,20 @@ const styles = StyleSheet.create({
     justifyContent: "center"
   },
   loginInput: {
-    fontSize: 30,
+    fontSize: 25,
     paddingLeft: 5,
     borderWidth: 1,
     borderRadius: 5,
     borderColor: "rgba(158, 150, 150, .5)",
-    margin: 15
+    margin: 15,
+    width: '80%',
+    paddingLeft: 30,
+    height: 50
   },
   Button: {
     borderRadius: 5,
-    margin: 15
+    margin: 15,
+    width: '80%'
   },
   title: {
     fontSize: 60,

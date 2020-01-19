@@ -42,6 +42,7 @@ class App extends React.Component {
         <Button
           onPress={() => navigation.navigate("Profile")}
           title="Profile"
+          type="clear"
           color="#fff"
         />
       )
@@ -202,7 +203,10 @@ class App extends React.Component {
             }}
           />
           <View>
-            <Button title="Alcohol" buttonStyle={{ ...styles.Button }} />
+            <Button title="Alcohol Poisoning" type="outline" buttonStyle={{ ...styles.Button }}
+            onPress={() => {
+              this.sendWarning("help");
+            }} />
           </View>
           <Button
             title="Heart-attack"
@@ -217,6 +221,9 @@ class App extends React.Component {
             title="Unconscious "
             type="outline"
             buttonStyle={styles.Button}
+            onPress={() => {
+              this.sendWarning("help");
+            }}
           />
           <View style={styles.infoPane}>
             <Text
@@ -256,14 +263,16 @@ const styles = StyleSheet.create({
   },
   emergencyContainer: {
     flex: 2,
-    paddingBottom: 30
+    paddingBottom: 30,
+    alignItems: 'center'
     // backgroundColor: 'grey'
   },
   emergency: {
     fontSize: 36,
     color: "#F26101",
     marginTop: 30,
-    marginLeft: 40
+    marginLeft: 40,
+    marginRight: 30,
   },
   ButtonContainers: {
     // backgroundColor: 'grey',
