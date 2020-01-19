@@ -1,10 +1,3 @@
-import React from "react";
-import { StyleSheet, Text, View, Dimensions } from "react-native";
-import { Button, Icon } from "react-native-elements";
-import { createAppContainer } from "react-navigation";
-import { createStackNavigator } from "react-navigation-stack";
-import LoginScreen from "./Screens/login";
-import SignUpScreen from "./Screens/signup";
 import React from 'react';
 import { StyleSheet, Text, View} from 'react-native';
 import {Button, Icon} from 'react-native-elements';
@@ -16,8 +9,6 @@ import SignUpScreen from './Screens/signup'
 import ProfileScreen from './Screens/profile'
 
 
-class App extends React.Component {
-  render() {
 class App extends React.Component{
   static navigationOptions = ({ navigation }) => {
     return {
@@ -40,17 +31,7 @@ class App extends React.Component{
 
         <View style={styles.emergencyContainer}>
           <Text style={styles.emergency}>What is the Emergency?</Text>
-
         </View>
-        <Button title="Overdose" type="outline" buttonStyle={styles.Button} />
-        <Button
-          title="Heart-attack"
-          type="outline"
-          buttonStyle={styles.Button}
-        />
-        <Button title="Drowning" type="outline" buttonStyle={styles.Button} />
-        <Button title="Unconcious" type="outline" buttonStyle={styles.Button} />
-
 
         <View style={styles.ButtonContainers}>
           <Button
@@ -103,10 +84,21 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center"
   },
+    emergencyContainer: {
+        flex:2,
+        paddingBottom: 30,
+        // backgroundColor: 'grey'
+    },
   emergency: {
     fontSize: 36,
     color: "#304269"
   },
+    ButtonContainers:{
+        // backgroundColor: 'grey',
+        // marginTop: 40,
+        alignItems: 'center',
+        flex: 8
+    },
   Button: {
     marginBottom: 20,
     width: 300,
@@ -125,27 +117,27 @@ const styles = StyleSheet.create({
     paddingBottom: 20,
     marginTop:40,
     width: 300
-  },
+  }
 
 });
 
 const AppNavigator = createStackNavigator({
-  HomeScreen: {
-    screen: App
-  },
-  // ,
-  // Login:{
-  //   screen: LoginScreen
+  // HomeScreen: {
+  //   screen: App
   // },
-  // Signup: {
-  //   screen: SignUpScreen
-  // }
+
+  Login:{
+    screen: LoginScreen
+  },
+  Signup: {
+    screen: SignUpScreen
+  }
   // Credentials: {
   //   screen: CredentialsScreen
   // },
-  Profile: {
-    screen: ProfileScreen
-  }
+  // Profile: {
+  //   screen: ProfileScreen
+  // }
 });
 
 export default createAppContainer(AppNavigator);
