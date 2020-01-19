@@ -13,6 +13,7 @@ import * as Location from "expo-location";
 import axios from "axios";
 import CredentialsScreen from "./Screens/CredentialsScreen";
 import ProfileScreen from "./Screens/profile";
+import openMap from "react-native-open-maps";
 
 const PUSH_ENDPOINT = "https://exp.host/--/api/v2/push/send";
 
@@ -126,6 +127,23 @@ class App extends React.Component {
   _handleNotification = notification => {
     // do whatever you want to do with the notification
     this.setState({ notification: notification });
+    if (notification.origin == "selected") {
+      Alert.alert("Alert", "Naloxone needed", [
+        {
+          text: "Cancel",
+          onPress: () => console.log("Cancel Pressed"),
+          style: "cancel"
+        },
+        {
+          text: "OK",
+          onPress: () =>
+            openMap({
+              latitude: notification.lat,
+              longitude: notification.long
+            })
+        }
+      ]);
+    }
   };
 
   sendWarning = () => {
