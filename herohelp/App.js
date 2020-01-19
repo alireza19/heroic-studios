@@ -107,7 +107,7 @@ class App extends React.Component {
       axios.post(`http://204.209.76.173/updateLoc?t=${new Date().getTime()}`, {
         lat: location.coords.latitude,
         long: location.coords.longitude,
-        email: "ali@email.com"
+        email: AsyncStorage.getItem("user")
       });
     });
   };

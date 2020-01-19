@@ -22,7 +22,9 @@ var url = "mongodb://localhost:27017";
 // });
 
 router.post('/updateLoc', function(req, res){
-
+    console.log({lat: req.body.lat});
+    console.log({long: req.body.long});
+    console.log({req.body.email});
     MongoClient.connect(url, function(err, db) {
         if (err){
             res.json({res:false});
