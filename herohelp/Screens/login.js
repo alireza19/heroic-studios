@@ -77,7 +77,7 @@ const styles = StyleSheet.create({
     justifyContent: "center"
   },
   loginInput: {
-    fontSize: 20,
+    fontSize: 30,
     paddingLeft: 5,
     borderWidth: 1,
     borderRadius: 5,

@@ -127,7 +127,7 @@ class App extends React.Component {
   }
   _handleNotification = notification => {
     // do whatever you want to do with the notification
-    console.log(notification);
+    // console.log(notification);
     this.setState({ notification: notification });
     if (notification.origin == "selected") {
       if(typeof notification.data.pros === "undefined"){
@@ -158,9 +158,16 @@ class App extends React.Component {
           }
         ]);
       }else{
+        if(!(typeof notification.data.pros === "undefined")){
+          Alert.alert(notification.data.name + " is on the way.");
+        }
+      }
+    }else{
+      if(!(typeof notification.data.pros === "undefined")){
         Alert.alert(notification.data.name + " is on the way.");
       }
     }
+    
   };
 
   sendWarning = async warn => {
@@ -174,7 +181,7 @@ class App extends React.Component {
       })
       .then(res => {
         // console.log(res);
-        Alert.alert("sent");
+        Alert.alert("Looking for help!");
       });
   };
   render() {
