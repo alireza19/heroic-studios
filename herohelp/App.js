@@ -129,7 +129,6 @@ class App extends React.Component {
     // do whatever you want to do with the notification
     this.setState({ notification: notification });
     if (notification.origin == "selected") {
-      console.log(notification);
       Alert.alert("Alert", "Naloxone needed", [
         {
           text: "Cancel",
@@ -138,11 +137,21 @@ class App extends React.Component {
         },
         {
           text: "OK",
-          onPress: () =>
-            openMap({
-              latitude: notification.lat,
-              longitude: notification.long
-            })
+          onPress: () => {
+            var email = AsyncStorage.getItem("email").then(() => {
+              axios.post(
+                `http://204.209.76.173/coming?t=${new Date().getTime()}`,
+                {
+                  token: notification.data.token,
+                  email: notification.data.email
+                }
+              );
+              openMap({
+                latitude: notification.lat,
+                longitude: notification.long
+              });
+            });
+          }
         }
       ]);
     }
