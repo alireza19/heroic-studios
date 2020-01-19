@@ -3,16 +3,44 @@ import { StyleSheet, Text, View} from 'react-native';
 import {Button, Icon} from 'react-native-elements';
 import { createAppContainer } from 'react-navigation';
 import { createStackNavigator } from 'react-navigation-stack';
+
 import LoginScreen from './Screens/login'
 import SignUpScreen from './Screens/signup'
+import ProfileScreen from './Screens/profile'
+
 
 class App extends React.Component{
+  static navigationOptions = ({ navigation }) => {
+    return {
+      headerTitle: () =>  <Text >Home</Text>,
+
+      headerRight: ( )=> (
+        <Button
+            onPress={() => navigation.navigate('Profile')}
+            title="Profile"
+            color="#fff"
+        />
+    ),
+    };
+  }
+
   render(){
+
     return (
       <View style={styles.container}>
+        <View style={{width: '100%', alignItems:'flex-end', justifyContent: 'flex-end'}}>
+          {/*<Button*/}
+          {/*    title="Add Credentials"*/}
+          {/*    type="outline"*/}
+          {/*    onPress={() => this.props.navigation.navigate('Credentials')}*/}
+          {/*/>*/}
+        </View>
         <View style={styles.emergencyContainer}>
           <Text style={styles.emergency}>What is the Emergency?</Text>
+
         </View>
+
+
         <View style={styles.ButtonContainers}>
           <Button
             title="Overdose"
@@ -48,7 +76,7 @@ class App extends React.Component{
               <Text style={{
               color:'white',
               textAlign:'center'}}>during an emergency.</Text>
-              
+
           </View>
         </View>
       </View>
@@ -99,18 +127,27 @@ const styles = StyleSheet.create({
     paddingRight: 20,
     paddingBottom: 20,
     marginTop:40,
-  }
+    width: 300
+  },
+
 });
 
 const AppNavigator = createStackNavigator({
   HomeScreen: {
-    screen: App,
+    screen: App
   },
-  Login:{
-    screen: LoginScreen 
-  },
-  Signup: {
-    screen: SignUpScreen
+  // ,
+  // Login:{
+  //   screen: LoginScreen
+  // },
+  // Signup: {
+  //   screen: SignUpScreen
+  // }
+  // Credentials: {
+  //   screen: CredentialsScreen
+  // },
+  Profile: {
+    screen: ProfileScreen
   }
 });
 
