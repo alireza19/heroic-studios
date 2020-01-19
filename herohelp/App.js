@@ -91,10 +91,7 @@ class App extends React.Component {
             buttonStyle={styles.Button}
             onPress={() => {
               axios.get("http://204.209.76.173/warning", {
-                "lat": 53.525684,
-                "long": -113.519277,
-                "type": "Overdose",
-                "email": "akfatih2@gmail.com"
+                no:"no"
               }).then(() => {
                 Alert.alert("sent");
               })
