@@ -216,7 +216,9 @@ class App extends React.Component {
               this.sendWarning("CPR");
             }}
           />
-          <Button title="Drowning" type="outline" buttonStyle={styles.Button} />
+          <Button title="Drowning" type="outline" buttonStyle={styles.Button} onPress={() => {
+              this.sendWarning("lifesaver");
+            }}/>
           <Button
             title="Unconscious "
             type="outline"
