@@ -282,12 +282,12 @@ const styles = StyleSheet.create({
 });
 
 const AppNavigator = createStackNavigator({
-  Login: {
-    screen: LoginScreen
-  },
-  Signup: {
-    screen: SignUpScreen
-  },
+  // Login: {
+  //   screen: LoginScreen
+  // },
+  // Signup: {
+  //   screen: SignUpScreen
+  // },
   HomeScreen: {
     screen: App
   },
