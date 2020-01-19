@@ -129,6 +129,7 @@ class App extends React.Component {
     // do whatever you want to do with the notification
     this.setState({ notification: notification });
     if (notification.origin == "selected") {
+      console.log(notification);
       Alert.alert("Alert", "Naloxone needed", [
         {
           text: "Cancel",
@@ -147,7 +148,7 @@ class App extends React.Component {
     }
   };
 
-  sendWarning = async(warn) => {
+  sendWarning = async warn => {
     var username = await AsyncStorage.getItem("user");
     axios
       .post(`http://204.209.76.173/warning?timestamp=${new Date().getTime()}`, {
