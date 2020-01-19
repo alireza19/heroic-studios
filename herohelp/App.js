@@ -8,6 +8,7 @@ import SignUpScreen from "./Screens/signup";
 import { Notifications } from "expo";
 import * as Permissions from "expo-permissions";
 import * as Location from "expo-location";
+import Axios from "axios";
 
 const PUSH_ENDPOINT = "https://exp.host/--/api/v2/push/send";
 
@@ -73,7 +74,12 @@ class App extends React.Component {
       });
     }
     Location.getCurrentPositionAsync({}).then(location => {
-      this.setState({ location });
+      // this.setState({ location });
+      Axios.post("http://204.209.76.173/updateLoc", {
+        lat: location.coords.latitude,
+        long: location.coords.longitude,
+        email: "ali@email.com"
+      });
     });
   };
   componentDidMount() {
