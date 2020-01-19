@@ -24,10 +24,12 @@ var url = "mongodb://localhost:27017";
 router.get('/loginin', function(req, res){
     if(req.body.email == "" || typeof req.body.email === "undefined"){
         res.json({res:false});
+        return;
     }
 
     if(req.body.pass == "" || typeof req.body.pass === "undefined"){
         res.json({res:false});
+        return;
     }
 
     MongoClient.connect(url, function(err, db) {
