@@ -1,11 +1,9 @@
 const express = require('express');
 const router = express.Router();
-// var mongo = require('mongodb');
+var mongo = require('mongodb');
 
 var MongoClient = require('mongodb').MongoClient;
-var url = "mongodb://localhost:27017/mydb";
-
-var db = require('../db');
+var url = "mongodb://localhost:27017";
 
 // MongoClient.connect(url, function(err, db) {
 //     if (err) throw err;
@@ -24,12 +22,22 @@ var db = require('../db');
 // });
 
 router.get('/loginin', function(req, res){
-    // db.get().collection('customers').find({}).toArray()
-	// .then((users) => {
-    //         console.log('customers', users);
-    // }).catch(() => {
-        res.json({res: true});
-    // })
+    MongoClient.connect(url, function(err, db) {
+        if (err) throw err;
+        var dbo = db.db("mydb");
+        dbo.collection("customers").findOne({email: req.body.email, password: req.body.pass})
+        .then(result => {
+            if(!result){
+                res.json({res: false});
+                console.log({b: req.body})
+            }else{
+                res.json({res: true});
+            }
+            // console.log(result);
+        });
+    });
+        
+        
 });
 
 module.exports = router;

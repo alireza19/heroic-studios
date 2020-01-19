@@ -4,13 +4,16 @@ const mongoDbUrl = 'mongodb://localhost:27017/mydb';
 let mongodb;
 
 function connect(callback){
-    mongoClient.connect(mongoDbUrl, (err, db) => {
-        mongodb = db;
-        callback();
-    });
-}
-function get(){
-    return mongodb;
+    if(!mongodb){
+        mongoClient.connect(mongoDbUrl, (err, db) => {
+            mongodb = db;
+            if(callback){
+                callback();
+            }
+        });
+    }
+
+    return mongodb
 }
 
 function close(){
@@ -18,7 +21,5 @@ function close(){
 }
 
 module.exports = {
-    connect,
-    get,
-    close
-};
+    connect
+}
