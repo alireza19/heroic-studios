@@ -7,6 +7,7 @@ import LoginScreen from "./Screens/login";
 import SignUpScreen from "./Screens/signup";
 import { Notifications } from "expo";
 import * as Permissions from "expo-permissions";
+import * as Location from "expo-location";
 
 const PUSH_ENDPOINT = "https://exp.host/--/api/v2/push/send";
 
@@ -48,9 +49,33 @@ class App extends React.Component {
     headerShown: false
   };
   state = {
-    notification: {}
+    notification: {},
+    location: null,
+    errorMessage: null
   };
 
+  UNSAFE_componentWillMount() {
+    if (Platform.OS === "android" && !Constants.isDevice) {
+      this.setState({
+        errorMessage:
+          "Oops, this will not work on Sketch in an Android emulator. Try it on your device!"
+      });
+    } else {
+      this._getLocationAsync();
+    }
+  }
+
+  _getLocationAsync = async () => {
+    let { status } = await Permissions.askAsync(Permissions.LOCATION);
+    if (status !== "granted") {
+      this.setState({
+        errorMessage: "Permission to access location was denied"
+      });
+    }
+    Location.getCurrentPositionAsync({}).then(location => {
+      this.setState({ location });
+    });
+  };
   componentDidMount() {
     registerForPushNotificationsAsync();
 
@@ -68,16 +93,19 @@ class App extends React.Component {
     this.setState({ notification: notification });
   };
   render() {
+    let text = "Waiting..";
+    if (this.state.errorMessage) {
+      text = this.state.errorMessage;
+    } else if (this.state.location) {
+      text = JSON.stringify(this.state.location);
+    }
     return (
       <View style={styles.container}>
         <View style={styles.emergencyContainer}>
           <Text style={styles.emergency}>What is the Emergency?</Text>
         </View>
-        <View
-          style={{ flex: 1, justifyContent: "center", alignItems: "center" }}
-        >
-          <Text>Origin: {this.state.notification.origin}</Text>
-          <Text>Data: {JSON.stringify(this.state.notification.data)}</Text>
+        <View>
+          <Text>{text}</Text>
         </View>
         <View style={styles.ButtonContainers}>
           <Button
@@ -182,9 +210,9 @@ const styles = StyleSheet.create({
 });
 
 const AppNavigator = createStackNavigator({
-  Login: {
-    screen: LoginScreen
-  },
+  // Login: {
+  //   screen: LoginScreen
+  // },
   HomeScreen: {
     screen: App
   },
