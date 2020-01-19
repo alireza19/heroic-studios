@@ -21,7 +21,7 @@ var url = "mongodb://localhost:27017/mydb";
 //     });
 // });
 
-router.get('/signUp', function(req, res){
+router.post('/signUp', function(req, res){
     MongoClient.connect(url, function(err, db) {
         if (err) throw err;
         var dbo = db.db("mydb");

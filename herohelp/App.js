@@ -1,5 +1,5 @@
 import React from "react";
-import { StyleSheet, Text, View, Alert } from "react-native";
+import { StyleSheet, Text, View, Alert, AsyncStorage } from "react-native";
 import {Button, Icon, Input} from "react-native-elements";
 import { createAppContainer } from "react-navigation";
 import { createStackNavigator } from "react-navigation-stack";
@@ -13,6 +13,8 @@ import CredentialsScreen from './Screens/CredentialsScreen'
 import ProfileScreen from "./Screens/profile";
 
 const PUSH_ENDPOINT = "https://exp.host/--/api/v2/push/send";
+
+
 
 async function registerForPushNotificationsAsync() {
   const { status } = await Permissions.askAsync(Permissions.NOTIFICATIONS);
@@ -30,19 +32,10 @@ async function registerForPushNotificationsAsync() {
   // POST the token to your backend server from where you can retrieve it to send push notifications.
 }
 
-Notifications.getExpoPushTokenAsync().then(token => {
-  // ExponentPushToken[3UgpXrDUr14B2I3Gemq2VO]
-  console.log("EXPO TOKEN: ");
-  console.log(token);
-  // axios.post("http://204.209.76.173/expoToken", {
-  //   token,
-  //   email:"fatih@email.com"
-  // });
-}).catch(err => {
-  console.log(err);
-});
+
 
 class App extends React.Component {
+
   static navigationOptions = ({ navigation }) => {
     return {
       headerTitle: () =>  <Text >Home</Text>,
@@ -61,11 +54,30 @@ class App extends React.Component {
     chosen: ''
   }
 
-
-  
+  // function to get data from device storage
+  getData = async () => {
+      try {
+          let userEmail = await AsyncStorage.getItem('user');
+          console.log("Logged in with : " + userEmail);
+          Notifications.getExpoPushTokenAsync().then(token => {
+            // ExponentPushToken[3UgpXrDUr14B2I3Gemq2VO]
+            console.log("EXPO TOKEN: ");
+            console.log(token);
+            axios.post("http://204.209.76.173/expoToken", {
+              token,
+              email:userEmail
+            });
+          }).catch(err => {
+            console.log(err);
+          });
+      }
+      catch(error){
+          alert(error);
+      }
+  } 
 
   componentDidMount() {
-    
+    this.getData();
     registerForPushNotificationsAsync();
     // Handle notifications that are received or selected while the app
     // is open. If the app was closed and then opened by tapping the
@@ -203,23 +215,16 @@ const styles = StyleSheet.create({
 });
 
 const AppNavigator = createStackNavigator({
-  // Login: {
-  //     screen: LoginScreen
-  //   },
+
+  Login: {
+    screen: LoginScreen
+  },
+  Signup: {
+    screen: SignUpScreen
+  },
   HomeScreen: {
     screen: App
   },
-
-  // Profile: {
-  //   screen: ProfileScreen
-  // }
-  
-  // Login: {
-  //   screen: LoginScreen
-  // },
-  // Signup: {
-  //   screen: SignUpScreen
-  // },
   HomeScreen: {
     screen: App
   },
