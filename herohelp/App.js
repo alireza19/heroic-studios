@@ -7,6 +7,7 @@ import { createStackNavigator } from 'react-navigation-stack';
 import LoginScreen from './Screens/login'
 import SignUpScreen from './Screens/signup'
 import ProfileScreen from './Screens/profile'
+import CredentialsScreen from './Screens/CredentialsScreen'
 
 
 class App extends React.Component{
@@ -126,15 +127,15 @@ const AppNavigator = createStackNavigator({
   //   screen: App
   // },
 
-  Login:{
-    screen: LoginScreen
-  },
-  Signup: {
-    screen: SignUpScreen
-  }
-  // Credentials: {
-  //   screen: CredentialsScreen
+  // Login:{
+  //   screen: LoginScreen
   // },
+  // Signup: {
+  //   screen: SignUpScreen
+  // }
+  Credentials: {
+    screen: CredentialsScreen
+  }
   // Profile: {
   //   screen: ProfileScreen
   // }
