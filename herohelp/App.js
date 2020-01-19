@@ -63,8 +63,9 @@ class App extends React.Component {
             // ExponentPushToken[3UgpXrDUr14B2I3Gemq2VO]
             console.log("EXPO TOKEN: ");
             console.log(token);
-            axios.post("http://204.209.76.173/expoToken", {
-              token,
+
+            axios.post(`http://204.209.76.173/expoToken?timestamp=${new Date().getTime()}`, {
+              token: token,
               email:userEmail
             });
           }).catch(err => {
