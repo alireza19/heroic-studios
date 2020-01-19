@@ -15,6 +15,7 @@ const signUp = require('./routes/signUp.js');
 const login = require('./routes/login.js');
 const everythingOkay = require('./routes/everythingOkay.js');
 const warning = require('./routes/warning.js');
+const expoToken = require('./routes/expoToken');
 
 server.use(helmet());
 server.use((req, res, next) => {
@@ -39,6 +40,7 @@ server.get('/signUp', signUp);
 server.post('/loginin', login);
 server.get('/warning', warning);
 server.get('/everythingOkay', everythingOkay);
+server.post('/expoToken', expoToken);
 
 server.get('*', function(req, res){
     res.status(200).send('There is nothing here. This incident is reported.');

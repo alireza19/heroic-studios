@@ -7,6 +7,7 @@ import LoginScreen from "./Screens/login";
 import SignUpScreen from "./Screens/signup";
 import { Notifications } from "expo";
 import * as Permissions from "expo-permissions";
+import Axios from "axios";
 
 const PUSH_ENDPOINT = "https://exp.host/--/api/v2/push/send";
 
@@ -24,21 +25,25 @@ async function registerForPushNotificationsAsync() {
   // Get the token that identifies this device
   Notifications.getExpoPushTokenAsync().then(token => {
     // ExponentPushToken[3UgpXrDUr14B2I3Gemq2VO]
-    return fetch(PUSH_ENDPOINT, {
-      method: "POST",
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify({
-        token: {
-          value: token
-        },
-        user: {
-          username: "alireza19"
-        }
-      })
+    Axios.post("http://204.209.76.173/expoToken", {
+      token
     });
+    // return 
+    // fetch(PUSH_ENDPOINT, {
+    //   method: "POST",
+    //   headers: {
+    //     Accept: "application/json",
+    //     "Content-Type": "application/json"
+    //   },
+    //   body: JSON.stringify({
+    //     token: {
+    //       value: token
+    //     },
+    //     user: {
+    //       username: "alireza19"
+    //     }
+    //   })
+    // });
   });
   // POST the token to your backend server from where you can retrieve it to send push notifications.
 }
