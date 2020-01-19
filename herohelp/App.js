@@ -225,9 +225,6 @@ const AppNavigator = createStackNavigator({
   HomeScreen: {
     screen: App
   },
-  HomeScreen: {
-    screen: App
-  },
   Profile: {
     screen: ProfileScreen
   },
