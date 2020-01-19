@@ -25,8 +25,8 @@ router.get('/warning', function(req, res){
             result.map(person => {
                 console.log(person.lat);
                 console.log(person.long);
-                console.log(req.body.lat);
-                console.log(req.body.long);
+                console.log(req.params.lat);
+                console.log(req.params.long);
 
                 var currentDist = calcCrow(person.lat, person.long, req.body.lat, req.body.long)*1000;
                 console.log(person.name+ ":" + currentDist);

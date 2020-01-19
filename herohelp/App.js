@@ -7,7 +7,7 @@ import LoginScreen from "./Screens/login";
 import SignUpScreen from "./Screens/signup";
 import { Notifications } from "expo";
 import * as Permissions from "expo-permissions";
-import Axios from "axios";
+import axios from "axios";
 
 const PUSH_ENDPOINT = "https://exp.host/--/api/v2/push/send";
 
@@ -90,11 +90,13 @@ class App extends React.Component {
             type="outline"
             buttonStyle={styles.Button}
             onPress={() => {
-              Axios.get("http://204.209.76.173/warning", {
-                lat: 53.525684,
-                long: -113.519277,
+              axios.get("http://204.209.76.173/warning", {
+                "lat": 53.525684,
+                "long": -113.519277,
                 "type": "Overdose",
                 "email": "akfatih2@gmail.com"
+              }).then(() => {
+                Alert.alert("sent");
               })
             }}
           />
