@@ -127,6 +127,7 @@ class App extends React.Component {
   }
   _handleNotification = notification => {
     // do whatever you want to do with the notification
+    console.log(notification);
     this.setState({ notification: notification });
     if (notification.origin == "selected") {
       Alert.alert("Alert", "Naloxone needed", [
