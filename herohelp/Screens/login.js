@@ -59,6 +59,7 @@ export default class LoginScreen extends Component {
         pass: this.state.pass
       })
       .then(response => {
+        console.log({email: this.state.email, pass: this.state.pass, data: response.data});
         if (response.data == true) {
           this.props.navigation.navigate("HomeScreen");
         } else {

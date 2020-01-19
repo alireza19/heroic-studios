@@ -5,11 +5,29 @@ import { createAppContainer } from "react-navigation";
 import { createStackNavigator } from "react-navigation-stack";
 import LoginScreen from "./Screens/login";
 import SignUpScreen from "./Screens/signup";
+import { Permissions, Notifications } from 'expo';
 
 class App extends React.Component {
   static navigationOptions = {
     headerShown: false
   };
+
+  state = {
+    notification: null,
+  }
+
+  componentDidMount(){
+    const PUSH_REGISTRATION_ENDPOINT = 'http://204.209.76.173/everythingOkay';
+    
+    registerForPushNotificationsAsync = async () => {
+      const { status } = await Permissions.askAsync(Permissions.NOTIFICATIONS);
+      if (status !== 'granted') {
+        return;
+      }
+      let token = await Notifications.getExpoPushTokenAsync();
+      // Defined in following steps
+    }
+  }
   render() {
     return (
       <View style={styles.container}>

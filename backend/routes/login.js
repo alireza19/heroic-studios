@@ -38,8 +38,8 @@ router.get('/loginin', function(req, res){
         dbo.collection("customers").findOne({email: req.body.email, password: req.body.pass})
         .then(result => {
             if(!result){
-                res.json({res: false});
                 console.log({b: req.body})
+                res.json({res: false});
             }else{
                 res.json({res: true});
             }
