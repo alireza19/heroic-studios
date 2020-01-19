@@ -13,6 +13,7 @@ const router = express.Router();
 
 const signUp = require('./routes/signUp.js');
 const login = require('./routes/login.js');
+const everythingOkay = require('./routes/everythingOkay.js');
 
 server.use(helmet());
 server.use((req, res, next) => {
@@ -35,10 +36,11 @@ server.use(cors());
 
 server.get('/signUp', signUp);
 server.get('/loginin', login);
+server.get('/everythingOkay', everythingOkay);
 
 server.get('*', function(req, res){
     res.status(200).send('There is nothing here. This incident is reported.');
 });
 
-    http.createServer(server).listen(80);
-    console.log("HTTP server has started on port " + 80);
+http.createServer(server).listen(80);
+console.log("HTTP server has started on port " + 80);
