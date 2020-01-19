@@ -1,15 +1,17 @@
 import React from "react";
 import { StyleSheet, Text, View, Alert } from "react-native";
-import { Button, Icon } from "react-native-elements";
+import {Button, Icon, Input} from "react-native-elements";
 import { createAppContainer } from "react-navigation";
 import { createStackNavigator } from "react-navigation-stack";
 import LoginScreen from "./Screens/login";
 import SignUpScreen from "./Screens/signup";
+import HelpScreen from "./Screens/help";
 import { Notifications } from "expo";
 import * as Permissions from "expo-permissions";
 import axios from "axios";
-import ProfileScreen from './Screens/profile'
 import CredentialsScreen from './Screens/CredentialsScreen'
+import ProfileScreen from "./Screens/profile";
+
 const PUSH_ENDPOINT = "https://exp.host/--/api/v2/push/send";
 
 async function registerForPushNotificationsAsync() {
@@ -41,12 +43,24 @@ Notifications.getExpoPushTokenAsync().then(token => {
 });
 
 class App extends React.Component {
-  static navigationOptions = {
-    headerShown: false
-  };
+  static navigationOptions = ({ navigation }) => {
+    return {
+      headerTitle: () =>  <Text >Home</Text>,
+
+      headerRight: ( )=> (
+          <Button
+              onPress={() => navigation.navigate('Profile')}
+              title="Profile"
+              color="#fff"
+          />
+      ),
+    };
+  }
   state = {
-    notification: {}
-  };
+    notification: {},
+    chosen: ''
+  }
+
 
   
 
@@ -79,6 +93,7 @@ class App extends React.Component {
               });
   }
   render() {
+    const { navigate } = this.props.navigation;
     return (
       <View style={styles.container}>
         <View style={styles.emergencyContainer}>
@@ -95,6 +110,9 @@ class App extends React.Component {
             title="Overdose"
             type="outline"
             buttonStyle={styles.Button}
+
+
+            // onPress={() => { this.props.navigation.navigate('Help', {chosen:"Overdoes"})}}
             onPress={() => {
               this.sendWarning();
             }}
@@ -151,11 +169,6 @@ const styles = StyleSheet.create({
     paddingBottom: 30
     // backgroundColor: 'grey'
   },
-  emergencyContainer: {
-    flex: 2,
-    paddingBottom: 30
-    // backgroundColor: 'grey'
-  },
   emergency: {
     fontSize: 36,
     color: "#F26101",
@@ -168,12 +181,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     flex: 8
   },
-  ButtonContainers: {
-    // backgroundColor: 'grey',
-    // marginTop: 40,
-    alignItems: "center",
-    flex: 8
-  },
+
   Button: {
     marginBottom: 20,
     width: 300,
@@ -195,7 +203,13 @@ const styles = StyleSheet.create({
 });
 
 const AppNavigator = createStackNavigator({
-  
+  // Login: {
+  //     screen: LoginScreen
+  //   },
+  HomeScreen: {
+    screen: App
+  },
+
   // Profile: {
   //   screen: ProfileScreen
   // }
@@ -209,6 +223,10 @@ const AppNavigator = createStackNavigator({
   HomeScreen: {
     screen: App
   },
+  Profile: {
+    screen: ProfileScreen
+  },
+
   Credentials: {
     screen: CredentialsScreen
   }
