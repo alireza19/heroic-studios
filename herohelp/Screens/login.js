@@ -53,22 +53,21 @@ export default class LoginScreen extends Component {
     );
   }
   getUser = async () => {
-    const response = axios
-      .get("http://204.209.76.173/loginin", {
-        email: this.state.email,
-        pass: this.state.pass
-      })
-      .then(response => {
-        console.log({email: this.state.email, pass: this.state.pass, data: response.data});
-        if (response.data == true) {
-          this.props.navigation.navigate("HomeScreen");
-        } else {
-          Alert.alert("Login failed");
-        }
-      })
-      .catch(error => {
-        console.log({ error });
-      });
+    axios.get("http://204.209.76.173/loginin", {
+      email: this.state.email,
+      pass: this.state.pass
+    })
+    .then(response => {
+      console.log({email: this.state.email, pass: this.state.pass, data: response.data});
+      if (response.data == true) {
+        this.props.navigation.navigate("HomeScreen");
+      } else {
+        Alert.alert("Login failed");
+      }
+    })
+    .catch(error => {
+      console.log({ error });
+    });
   };
 }
 const styles = StyleSheet.create({
