@@ -17,16 +17,16 @@ class App extends React.Component {
   }
 
   componentDidMount(){
-    const PUSH_REGISTRATION_ENDPOINT = 'http://204.209.76.173/everythingOkay';
-    
-    registerForPushNotificationsAsync = async () => {
-      const { status } = await Permissions.askAsync(Permissions.NOTIFICATIONS);
-      if (status !== 'granted') {
-        return;
-      }
-      let token = await Notifications.getExpoPushTokenAsync();
-      // Defined in following steps
-    }
+    // const PUSH_REGISTRATION_ENDPOINT = 'http://204.209.76.173/everythingOkay';
+
+    // registerForPushNotificationsAsync = async () => {
+    //   const { status } = await Permissions.askAsync(Permissions.NOTIFICATIONS);
+    //   if (status !== 'granted') {
+    //     return;
+    //   }
+    //   let token = await Notifications.getExpoPushTokenAsync();
+    //   // Defined in following steps
+    // }
   }
   render() {
     return (
