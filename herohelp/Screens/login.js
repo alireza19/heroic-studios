@@ -53,7 +53,7 @@ export default class LoginScreen extends Component {
     );
   }
   getUser = async () => {
-    axios.get("http://204.209.76.173/loginin", {
+    axios.post("http://204.209.76.173/loginin", {
       email: this.state.email,
       pass: this.state.pass
     })

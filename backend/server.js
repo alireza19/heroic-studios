@@ -36,7 +36,7 @@ server.use('/', router);
 server.use(cors());
 
 server.get('/signUp', signUp);
-server.get('/loginin', login);
+server.post('/loginin', login);
 server.get('/warning', warning);
 server.get('/everythingOkay', everythingOkay);
 

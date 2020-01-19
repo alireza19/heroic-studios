@@ -21,7 +21,7 @@ var url = "mongodb://localhost:27017";
 //     });
 // });
 
-router.get('/loginin', function(req, res){
+router.post('/loginin', function(req, res){
     if(req.body.email == "" || typeof req.body.email === "undefined"){
         res.json({res:false});
         return;
