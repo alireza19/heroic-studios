@@ -10,8 +10,9 @@ var distanceLIMIT = 400;
 
 router.get('/warning', function(req, res){
     // db.newWarning(53.525870,-113.518612,"CPR", new Date(), "akfatih2@gmail.com" );
-    db.newWarning(req.body.lat,req.body.long,req.body.type, new Date(), req.body.email );
-
+    // db.newWarning(req.body.lat,req.body.long,req.body.type, new Date(), req.body.email );
+    console.log("INPUT:");
+    console.log(req.body);
     MongoClient.connect(url, function(err, db) {
         if (err) throw err;
         var dbo = db.db("mydb");
@@ -56,7 +57,6 @@ router.get('/warning', function(req, res){
                     data: { 
                         long: req.body.long,
                         lat: req.body.lat,
-                        
                     },
                 })
                 console.log(messages);
