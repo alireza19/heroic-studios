@@ -26,6 +26,8 @@ router.get('/signUp', function(req, res){
         if (err) throw err;
         var dbo = db.db("mydb");
 
+        
+
         dbo.collection("customers").insertOne({
             name: req.body.name,
             lastname: req.body.lastname,
