@@ -62,7 +62,6 @@ router.post('/warning', function(req, res){
                         long: req.body.long,
                         lat: req.body.lat,
                         token: sender.expoToken,
-                        pros: sender.pros
                     },
                 })
                 console.log(messages);

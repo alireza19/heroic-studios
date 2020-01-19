@@ -130,7 +130,7 @@ class App extends React.Component {
     console.log(notification);
     this.setState({ notification: notification });
     if (notification.origin == "selected") {
-      if(!notification.data.pros){
+      if(typeof notification.data.pros === "undefined"){
         Alert.alert("Alert", "Naloxone needed", [
           {
             text: "Cancel",
