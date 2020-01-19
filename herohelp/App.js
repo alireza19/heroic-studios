@@ -24,30 +24,21 @@ async function registerForPushNotificationsAsync() {
     return;
   }
   // Get the token that identifies this device
-  Notifications.getExpoPushTokenAsync().then(token => {
-    // ExponentPushToken[3UgpXrDUr14B2I3Gemq2VO]
-    Axios.post("http://204.209.76.173/expoToken", {
-      token
-    });
-    // return 
-    // fetch(PUSH_ENDPOINT, {
-    //   method: "POST",
-    //   headers: {
-    //     Accept: "application/json",
-    //     "Content-Type": "application/json"
-    //   },
-    //   body: JSON.stringify({
-    //     token: {
-    //       value: token
-    //     },
-    //     user: {
-    //       username: "alireza19"
-    //     }
-    //   })
-    // });
-  });
+  
   // POST the token to your backend server from where you can retrieve it to send push notifications.
 }
+
+Notifications.getExpoPushTokenAsync().then(token => {
+  // ExponentPushToken[3UgpXrDUr14B2I3Gemq2VO]
+  console.log("EXPO TOKEN: ");
+  console.log(token);
+  // axios.post("http://204.209.76.173/expoToken", {
+  //   token,
+  //   email:"fatih@email.com"
+  // });
+}).catch(err => {
+  console.log(err);
+});
 
 class App extends React.Component {
   static navigationOptions = {
@@ -57,9 +48,11 @@ class App extends React.Component {
     notification: {}
   };
 
-  componentDidMount() {
-    registerForPushNotificationsAsync();
+  
 
+  componentDidMount() {
+    
+    registerForPushNotificationsAsync();
     // Handle notifications that are received or selected while the app
     // is open. If the app was closed and then opened by tapping the
     // notification (rather than just tapping the app icon to open it),
@@ -81,7 +74,7 @@ class App extends React.Component {
                 "type": "Overdose",
                 "email": "akfatih2@gmail.com"
               }).then((res) => {
-                console.log(res);
+                // console.log(res);
                 Alert.alert("sent");
               });
   }
@@ -207,12 +200,12 @@ const AppNavigator = createStackNavigator({
   //   screen: ProfileScreen
   // }
   
-  Login: {
-    screen: LoginScreen
-  },
-  Signup: {
-    screen: SignUpScreen
-  },
+  // Login: {
+  //   screen: LoginScreen
+  // },
+  // Signup: {
+  //   screen: SignUpScreen
+  // },
   HomeScreen: {
     screen: App
   },
