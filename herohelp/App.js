@@ -116,18 +116,18 @@ const styles = StyleSheet.create({
     paddingRight: 20,
     paddingBottom: 20,
     marginTop:40,
-    width: 300
+    // width: 300
   }
 
 });
 
 const AppNavigator = createStackNavigator({
-  // HomeScreen: {
-  //   screen: App
+  
+  // Login:{
+  //   screen: LoginScreen
   // },
-
-  Login:{
-    screen: LoginScreen
+  HomeScreen: {
+    screen: App
   },
   Signup: {
     screen: SignUpScreen
