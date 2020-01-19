@@ -62,7 +62,7 @@ class App extends React.Component {
   };
 
   UNSAFE_componentWillMount() {
-    if (Platform.OS === "android" && !Constants.isDevice) {
+    if (Platform.OS === "android") {
       this.setState({
         errorMessage:
           "Oops, this will not work on Sketch in an Android emulator. Try it on your device!"
@@ -249,9 +249,9 @@ const AppNavigator = createStackNavigator({
   // Login: {
   //   screen: LoginScreen
   // },
-  Signup: {
-    screen: SignUpScreen
-  },
+  // Signup: {
+  //   screen: SignUpScreen
+  // },
   HomeScreen: {
     screen: App
   }
