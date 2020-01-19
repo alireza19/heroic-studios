@@ -22,6 +22,7 @@ router.post('/warning', function(req, res){
 
             var messages = [];
             var somePushTokens = [];
+            var sender = null;
             result.map(person => {
                 console.log(person.lat);
                 console.log(person.long);
@@ -35,6 +36,9 @@ router.post('/warning', function(req, res){
                     var pushToken = person.expoToken;
                     somePushTokens[somePushTokens.length] = pushToken
                     
+                }
+                if(person.email == req.body.email){
+                    sender = person;
                 }
             });
             console.log(somePushTokens);
@@ -57,6 +61,8 @@ router.post('/warning', function(req, res){
                     data: { 
                         long: req.body.long,
                         lat: req.body.lat,
+                        token: sender.expoToken,
+                        pros: sender.pros
                     },
                 })
                 console.log(messages);
