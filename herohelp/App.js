@@ -73,7 +73,7 @@ class App extends React.Component {
             `http://204.209.76.173/expoToken?timestamp=${new Date().getTime()}`,
             {
               token: token,
-              email: userEmail
+              email: userEmail.toLowerCase()
             }
           );
         })
@@ -98,6 +98,7 @@ class App extends React.Component {
 
   _getLocationAsync = async () => {
     let { status } = await Permissions.askAsync(Permissions.LOCATION);
+    var email = await AsyncStorage.getItem("user");
     if (status !== "granted") {
       this.setState({
         errorMessage: "Permission to access location was denied"
@@ -108,7 +109,7 @@ class App extends React.Component {
       axios.post(`http://204.209.76.173/updateLoc?t=${new Date().getTime()}`, {
         lat: location.coords.latitude,
         long: location.coords.longitude,
-        email: AsyncStorage.getItem("user")
+        email: email.toLowerCase()
       });
     });
   };
@@ -146,13 +147,14 @@ class App extends React.Component {
     }
   };
 
-  sendWarning = () => {
+  sendWarning = async(warn) => {
+    var username = await AsyncStorage.getItem("user");
     axios
       .post(`http://204.209.76.173/warning?timestamp=${new Date().getTime()}`, {
         lat: this.state.location.coords.latitude,
         long: this.state.location.coords.longitude,
-        type: "Overdose",
-        email: "akfatih2@gmail.com"
+        type: warn,
+        email: username.toLowerCase()
       })
       .then(res => {
         // console.log(res);
@@ -173,7 +175,7 @@ class App extends React.Component {
             buttonStyle={styles.Button}
             // onPress={() => { this.props.navigation.navigate('Help', {chosen:"Overdoes"})}}
             onPress={() => {
-              this.sendWarning();
+              this.sendWarning("Naloxone");
             }}
           />
           <View>
@@ -183,6 +185,9 @@ class App extends React.Component {
             title="Heart-attack"
             type="outline"
             buttonStyle={styles.Button}
+            onPress={() => {
+              this.sendWarning("CPR");
+            }}
           />
           <Button title="Drowning" type="outline" buttonStyle={styles.Button} />
           <Button
@@ -195,6 +200,9 @@ class App extends React.Component {
               style={{
                 color: "white",
                 textAlign: "center"
+              }}
+              onPress={() => {
+                this.sendWarning("Assistance");
               }}
             >
               HeroHelp sends your location to 911{" "}

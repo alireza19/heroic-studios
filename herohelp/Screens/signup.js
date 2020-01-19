@@ -90,6 +90,7 @@ export default class SignUpScreen extends Component{
             })
             .then(response => {
                 if (response.data) {
+                    AsyncStorage.setItem("user", this.state.email.toLowerCase())
                     this.props.navigation.navigate("HomeScreen");
                 } else {
                     Alert.alert("Account Already exists");
