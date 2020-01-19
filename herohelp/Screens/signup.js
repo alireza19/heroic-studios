@@ -82,7 +82,7 @@ export default class SignUpScreen extends Component{
 
     checkAccount = async () => {
 
-        axios.get(`http://204.209.76.173/signup?timestamp=${new Date().getTime()}`, {
+        axios.post(`http://204.209.76.173/signup?timestamp=${new Date().getTime()}`, {
                 name: this.state.firstName.toLowerCase(),
                 lastName: this.state.lastName.toLocaleLowerCase(),
                 email: this.state.email.toLowerCase(),
