@@ -12,21 +12,21 @@ export default class ProfileScreen extends Component{
         this.state = {
             email:''
         }
-        }
+    }
 
     getEmail =async () => {
 
-            axios.post("DB Addy")
-                .then(response => {
-                    if (response.data) {
-                       this.setState({email:response.data})
-                    }
-                })
-                .catch(error => {
-                    console.log({ error });
-                });
+        axios.post("DB Addy")
+            .then(response => {
+                if (response.data) {
+                    this.setState({email:response.data})
+                }
+            })
+            .catch(error => {
+                console.log({ error });
+            });
 
-        };
+    };
 
     render(){
         return (
@@ -42,16 +42,16 @@ export default class ProfileScreen extends Component{
                         // Images for Camera
                         // onEditPress={ () => }
                     />
-            </View>
+                </View>
                 <View>
-                     {/*<Text style={{*/}
-                     {/*    color:'black',*/}
-                     {/*    textAlign:'center'}}>GET NAME FROM DB</Text>*/}
-                     <Text style={{
-                         color:'black',
-                         textAlign:'center'}}>
-                         {this.state.email}
-                     </Text>
+                    {/*<Text style={{*/}
+                    {/*    color:'black',*/}
+                    {/*    textAlign:'center'}}>GET NAME FROM DB</Text>*/}
+                    <Text style={{
+                        color:'black',
+                        textAlign:'center'}}>
+                        {this.state.email}
+                    </Text>
 
                     <Button
                         title="Add Credentials"
@@ -59,8 +59,8 @@ export default class ProfileScreen extends Component{
                         // buttonStyle = {styles.Button}
 
                     />
-                 </View>
                 </View>
+            </View>
 
         );
     }
