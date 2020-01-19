@@ -22,9 +22,9 @@ router.post('/coming', function(req, res){
                 res.json({res:false});
                 return;
             }
+            console.log(result);
             var messages = [];
             var somePushTokens = [];
-            var sender = null;
             somePushTokens[somePushTokens.length] = req.body.token
             console.log(somePushTokens);
             
