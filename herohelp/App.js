@@ -1,3 +1,10 @@
+import React from "react";
+import { StyleSheet, Text, View, Dimensions } from "react-native";
+import { Button, Icon } from "react-native-elements";
+import { createAppContainer } from "react-navigation";
+import { createStackNavigator } from "react-navigation-stack";
+import LoginScreen from "./Screens/login";
+import SignUpScreen from "./Screens/signup";
 import React from 'react';
 import { StyleSheet, Text, View} from 'react-native';
 import {Button, Icon} from 'react-native-elements';
@@ -9,6 +16,8 @@ import SignUpScreen from './Screens/signup'
 import ProfileScreen from './Screens/profile'
 
 
+class App extends React.Component {
+  render() {
 class App extends React.Component{
   static navigationOptions = ({ navigation }) => {
     return {
@@ -28,17 +37,19 @@ class App extends React.Component{
 
     return (
       <View style={styles.container}>
-        <View style={{width: '100%', alignItems:'flex-end', justifyContent: 'flex-end'}}>
-          {/*<Button*/}
-          {/*    title="Add Credentials"*/}
-          {/*    type="outline"*/}
-          {/*    onPress={() => this.props.navigation.navigate('Credentials')}*/}
-          {/*/>*/}
-        </View>
+
         <View style={styles.emergencyContainer}>
           <Text style={styles.emergency}>What is the Emergency?</Text>
 
         </View>
+        <Button title="Overdose" type="outline" buttonStyle={styles.Button} />
+        <Button
+          title="Heart-attack"
+          type="outline"
+          buttonStyle={styles.Button}
+        />
+        <Button title="Drowning" type="outline" buttonStyle={styles.Button} />
+        <Button title="Unconcious" type="outline" buttonStyle={styles.Button} />
 
 
         <View style={styles.ButtonContainers}>
@@ -87,28 +98,14 @@ class App extends React.Component{
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    width: '100%',
+    width: "100%",
     backgroundColor: "#FFFFFF",
-    // backgroundColor: 'grey'
-    // justifyContent: 'center',
-    // alignItems: 'center'
-  },
-  emergencyContainer: {
-    flex:2,
-    paddingBottom: 30,
-    // backgroundColor: 'grey'
+    justifyContent: "center",
+    alignItems: "center"
   },
   emergency: {
     fontSize: 36,
-    color: "#F26101",
-    marginTop:30,
-    marginLeft: 40,
-  },
-  ButtonContainers:{
-    // backgroundColor: 'grey',
-    // marginTop: 40,
-    alignItems: 'center',
-    flex: 8
+    color: "#304269"
   },
   Button: {
     marginBottom: 20,
