@@ -37,7 +37,7 @@ server.use(morgan('dev'));
 server.use('/', router);
 server.use(cors());
 
-server.get('/signUp', signUp);
+server.post('/signUp', signUp);
 server.post('/loginin', login);
 server.post('/warning', warning);
 server.get('/everythingOkay', everythingOkay);

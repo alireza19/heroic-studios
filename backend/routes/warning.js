@@ -6,7 +6,7 @@ const { Expo } = require('expo-server-sdk');
 var MongoClient = require('mongodb').MongoClient;
 var url = "mongodb://localhost:27017/mydb";
 let expo = new Expo();
-var distanceLIMIT = 400;
+var distanceLIMIT = 2000;
 
 router.post('/warning', function(req, res){
     // db.newWarning(53.525870,-113.518612,"CPR", new Date(), "akfatih2@gmail.com" );

@@ -9,7 +9,10 @@ var url = "mongodb://localhost:27017";
  * email
  */
 router.post('/expoToken', function(req, res){
-    
+    console.log({
+        email: req.body.email,
+        token: req.body.token
+    })
     MongoClient.connect(url, function(err, db) {
         if (err){
             res.json({res:false});

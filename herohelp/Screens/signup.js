@@ -21,9 +21,6 @@ export default class SignUpScreen extends Component{
     }
 
 
-    signedUp = (email, pass) => {
-        alert('email: ' + email + ' password: ' + pass)
-    }
 
     render(){
 
@@ -84,9 +81,10 @@ export default class SignUpScreen extends Component{
 
 
     checkAccount = async () => {
-        axios.get("http://204.209.76.173/signup", {
+
+        axios.post(`http://204.209.76.173/signup?timestamp=${new Date().getTime()}`, {
                 name: this.state.firstName.toLowerCase(),
-                lastName: this.state.lastName.toLocaleLowerCase(),
+                lastname: this.state.lastName.toLocaleLowerCase(),
                 email: this.state.email.toLowerCase(),
                 password: this.state.password.toLowerCase()
             })

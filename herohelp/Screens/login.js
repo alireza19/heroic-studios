@@ -1,9 +1,8 @@
 import React, { Component } from "react";
-import { View, Text, StyleSheet, Alert } from "react-native";
+import { View, Text, StyleSheet, Alert, AsyncStorage} from "react-native";
 import { Button } from "react-native-elements";
 import { TextInput } from "react-native-gesture-handler";
 import axios from "axios";
-
 export default class LoginScreen extends Component {
   static navigationOptions = {
     headerShown: false
@@ -54,12 +53,13 @@ export default class LoginScreen extends Component {
   }
   getUser = async () => {
     axios.post(`http://204.209.76.173/loginin?timestamp=${new Date().getTime()}`, {
-      email: this.state.email,
-      pass: this.state.pass
+      email: this.state.email.toLowerCase(),
+      pass: this.state.pass.toLowerCase()
     })
     .then(response => {
       console.log({email: this.state.email, pass: this.state.pass, data: response.data});
       if (response.data.res == true) {
+        AsyncStorage.setItem("user", this.state.email);
         this.props.navigation.navigate("HomeScreen");
       } else {
         Alert.alert("Login failed");
