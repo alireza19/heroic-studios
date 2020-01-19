@@ -31,7 +31,7 @@ router.get('/warning', function(req, res){
                     var pushToken = person.expoToken;
                     if (!Expo.isExpoPushToken(pushToken)) {
                         console.error(`Push token ${pushToken} is not a valid Expo push token`);
-                        continue;
+                        // continue;
                     }else{
                         console.log("Valid token.");
                     }
