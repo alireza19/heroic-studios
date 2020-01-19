@@ -72,6 +72,18 @@ class App extends React.Component {
     // do whatever you want to do with the notification
     this.setState({ notification: notification });
   };
+
+  sendWarning = () => {
+    axios.post(`http://204.209.76.173/warning?timestamp=${new Date().getTime()}`, {
+                "lat": 53.525684,
+                "long": -113.519277,
+                "type": "Overdose",
+                "email": "akfatih2@gmail.com"
+              }).then((res) => {
+                console.log(res);
+                Alert.alert("sent");
+              });
+  }
   render() {
     return (
       <View style={styles.container}>
@@ -90,14 +102,7 @@ class App extends React.Component {
             type="outline"
             buttonStyle={styles.Button}
             onPress={() => {
-              axios.get(`http://204.209.76.173/warning?timestamp=${new Date().getTime()}`, {
-                "lat": 53.525684,
-                "long": -113.519277,
-                "type": "Overdose",
-                "email": "akfatih2@gmail.com"
-              }).then(() => {
-                Alert.alert("sent");
-              })
+              this.sendWarning();
             }}
           />
           <View>
@@ -196,11 +201,11 @@ const styles = StyleSheet.create({
 });
 
 const AppNavigator = createStackNavigator({
-  Login: {
-    screen: LoginScreen
-  },
   HomeScreen: {
     screen: App
+  },
+  Login: {
+    screen: LoginScreen
   },
   Signup: {
     screen: SignUpScreen

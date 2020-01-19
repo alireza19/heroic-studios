@@ -38,7 +38,7 @@ server.use(cors());
 
 server.get('/signUp', signUp);
 server.post('/loginin', login);
-server.get('/warning', warning);
+server.post('/warning', warning);
 server.get('/everythingOkay', everythingOkay);
 server.post('/expoToken', expoToken);
 
