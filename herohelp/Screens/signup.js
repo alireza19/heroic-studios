@@ -1,7 +1,8 @@
 import React, {Component} from 'react';
-import {View, StyleSheet, Text, Alert} from 'react-native';
+import {View, StyleSheet, Text, Alert, AsyncStorage} from 'react-native';
 import {Button, Input} from "react-native-elements";
 import axios from "axios";
+
 
 // Need to fix label str colour
 export default class SignUpScreen extends Component{
@@ -99,7 +100,24 @@ export default class SignUpScreen extends Component{
             .catch(error => {
                 console.log({ error });
             });
+
+            // call the saveData function when authentication is done
     };
+
+    saveData = async () => {
+        let user = this.email;
+        AsyncStorage.setItem('user',user);
+    }
+
+    // function to get data from device storage
+    getData = async () => {
+        try {
+            let userEmail = await AsyncStorage.getItem('user');
+        }
+        catch(error){
+            alert(error);
+        }
+    }
 }
 
 const styles = StyleSheet.create({

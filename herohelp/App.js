@@ -8,8 +8,10 @@ import SignUpScreen from "./Screens/signup";
 import { Notifications } from "expo";
 import * as Permissions from "expo-permissions";
 import * as Location from "expo-location";
-import Axios from "axios";
 
+import axios from "axios";
+import ProfileScreen from "./Screens/profile";
+import CredentialsScreen from "./Screens/CredentialsScreen";
 const PUSH_ENDPOINT = "https://exp.host/--/api/v2/push/send";
 
 async function registerForPushNotificationsAsync() {
@@ -26,21 +28,25 @@ async function registerForPushNotificationsAsync() {
   // Get the token that identifies this device
   Notifications.getExpoPushTokenAsync().then(token => {
     // ExponentPushToken[3UgpXrDUr14B2I3Gemq2VO]
-    return fetch(PUSH_ENDPOINT, {
-      method: "POST",
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify({
-        token: {
-          value: token
-        },
-        user: {
-          username: "alireza19"
-        }
-      })
+    Axios.post("http://204.209.76.173/expoToken", {
+      token
     });
+    // return
+    // fetch(PUSH_ENDPOINT, {
+    //   method: "POST",
+    //   headers: {
+    //     Accept: "application/json",
+    //     "Content-Type": "application/json"
+    //   },
+    //   body: JSON.stringify({
+    //     token: {
+    //       value: token
+    //     },
+    //     user: {
+    //       username: "alireza19"
+    //     }
+    //   })
+    // });
   });
   // POST the token to your backend server from where you can retrieve it to send push notifications.
 }
@@ -98,6 +104,20 @@ class App extends React.Component {
     // do whatever you want to do with the notification
     this.setState({ notification: notification });
   };
+
+  sendWarning = () => {
+    axios
+      .post(`http://204.209.76.173/warning?timestamp=${new Date().getTime()}`, {
+        lat: 53.525684,
+        long: -113.519277,
+        type: "Overdose",
+        email: "akfatih2@gmail.com"
+      })
+      .then(res => {
+        console.log(res);
+        Alert.alert("sent");
+      });
+  };
   render() {
     let text = "Waiting..";
     if (this.state.errorMessage) {
@@ -118,7 +138,9 @@ class App extends React.Component {
             title="Overdose"
             type="outline"
             buttonStyle={styles.Button}
-            onPress={() => {}}
+            onPress={() => {
+              this.sendWarning();
+            }}
           />
           <View>
             <Button title="Alcohol" buttonStyle={{ ...styles.Button }} />
@@ -219,12 +241,23 @@ const AppNavigator = createStackNavigator({
   // Login: {
   //   screen: LoginScreen
   // },
-  HomeScreen: {
-    screen: App
-  },
+
+  // Profile: {
+  //   screen: ProfileScreen
+  // }
+
+  // Login: {
+  //   screen: LoginScreen
+  // },
   Signup: {
     screen: SignUpScreen
+  },
+  HomeScreen: {
+    screen: App
   }
+  // Credentials: {
+  //   screen: CredentialsScreen
+  // }
 });
 
 export default createAppContainer(AppNavigator);
